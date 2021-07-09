@@ -19,7 +19,7 @@
 gml_release_mode(!DEBUG_MODE);
 
 // Disable Garbage Collector
-gc_enable(false);
+// gc_enable(false);
 
 // Setup Extension
 global.ext_mesh_buffer = buffer_create(CHUNK_SIZE * CHUNK_SIZE * CHUNK_SIZE * 6.0 * 8.0, buffer_fixed, 1.0);
