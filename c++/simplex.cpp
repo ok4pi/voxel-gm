@@ -5,42 +5,43 @@
 #define F2 0.366025403f
 #define G2 0.211324865f
 
-static unsigned char perm[512]
+static uint8_t perm[256]
 {
-	151, 160, 137, 91, 90, 15,
-	131, 13, 201, 95, 96, 53, 194, 233, 7, 225, 140, 36, 103, 30, 69, 142, 8, 99, 37, 240, 21, 10, 23,
-	190, 6, 148, 247, 120, 234, 75, 0, 26, 197, 62, 94, 252, 219, 203, 117, 35, 11, 32, 57, 177, 33,
-	88, 237, 149, 56, 87, 174, 20, 125, 136, 171, 168, 68, 175, 74, 165, 71, 134, 139, 48, 27, 166,
-	77, 146, 158, 231, 83, 111, 229, 122, 60, 211, 133, 230, 220, 105, 92, 41, 55, 46, 245, 40, 244,
-	102, 143, 54, 65, 25, 63, 161, 1, 216, 80, 73, 209, 76, 132, 187, 208, 89, 18, 169, 200, 196,
-	135, 130, 116, 188, 159, 86, 164, 100, 109, 198, 173, 186, 3, 64, 52, 217, 226, 250, 124, 123,
-	5, 202, 38, 147, 118, 126, 255, 82, 85, 212, 207, 206, 59, 227, 47, 16, 58, 17, 182, 189, 28, 42,
-	223, 183, 170, 213, 119, 248, 152, 2, 44, 154, 163, 70, 221, 153, 101, 155, 167, 43, 172, 9,
-	129, 22, 39, 253, 19, 98, 108, 110, 79, 113, 224, 232, 178, 185, 112, 104, 218, 246, 97, 228,
-	251, 34, 242, 193, 238, 210, 144, 12, 191, 179, 162, 241, 81, 51, 145, 235, 249, 14, 239, 107,
-	49, 192, 214, 31, 181, 199, 106, 157, 184, 84, 204, 176, 115, 121, 50, 45, 127, 4, 150, 254,
-	138, 236, 205, 93, 222, 114, 67, 29, 24, 72, 243, 141, 128, 195, 78, 66, 215, 61, 156, 180,
+	0x97,0xA0,0x89,0x5B,0x5A,0x0F,0x83,0x0D,0xC9,0x5F,0x60,0x35,0xC2,0xE9,0x07,0xE1,
+	0x8C,0x24,0x67,0x1E,0x45,0x8E,0x08,0x63,0x25,0xF0,0x15,0x0A,0x17,0xBE,0x06,0x94,
+	0xF7,0x78,0xEA,0x4B,0x00,0x1A,0xC5,0x3E,0x5E,0xFC,0xDB,0xCB,0x75,0x23,0x0B,0x20,
+	0x39,0xB1,0x21,0x58,0xED,0x95,0x38,0x57,0xAE,0x14,0x7D,0x88,0xAB,0xA8,0x44,0xAF,
+	0x4A,0xA5,0x47,0x86,0x8B,0x30,0x1B,0xA6,0x4D,0x92,0x9E,0xE7,0x53,0x6F,0xE5,0x7A,
+	0x3C,0xD3,0x85,0xE6,0xDC,0x69,0x5C,0x29,0x37,0x2E,0xF5,0x28,0xF4,0x66,0x8F,0x36,
+	0x41,0x19,0x3F,0xA1,0x01,0xD8,0x50,0x49,0xD1,0x4C,0x84,0xBB,0xD0,0x59,0x12,0xA9,
+	0xC8,0xC4,0x87,0x82,0x74,0xBC,0x9F,0x56,0xA4,0x64,0x6D,0xC6,0xAD,0xBA,0x03,0x40,
+	0x34,0xD9,0xE2,0xFA,0x7C,0x7B,0x05,0xCA,0x26,0x93,0x76,0x7E,0xFF,0x52,0x55,0xD4,
+	0xCF,0xCE,0x3B,0xE3,0x2F,0x10,0x3A,0x11,0xB6,0xBD,0x1C,0x2A,0xDF,0xB7,0xAA,0xD5,
+	0x77,0xF8,0x98,0x02,0x2C,0x9A,0xA3,0x46,0xDD,0x99,0x65,0x9B,0xA7,0x2B,0xAC,0x09,
+	0x81,0x16,0x27,0xFD,0x13,0x62,0x6C,0x6E,0x4F,0x71,0xE0,0xE8,0xB2,0xB9,0x70,0x68,
+	0xDA,0xF6,0x61,0xE4,0xFB,0x22,0xF2,0xC1,0xEE,0xD2,0x90,0x0C,0xBF,0xB3,0xA2,0xF1,
+	0x51,0x33,0x91,0xEB,0xF9,0x0E,0xEF,0x6B,0x31,0xC0,0xD6,0x1F,0xB5,0xC7,0x6A,0x9D,
+	0xB8,0x54,0xCC,0xB0,0x73,0x79,0x32,0x2D,0x7F,0x04,0x96,0xFE,0x8A,0xEC,0xCD,0x5D,
+	0xDE,0x72,0x43,0x1D,0x18,0x48,0xF3,0x8D,0x80,0xC3,0x4E,0x42,0xD7,0x3D,0x9C,0xB4,
 };
-
-static inline uint8_t hash(int32_t i)
-{
-	return perm[static_cast<uint8_t>(i)];
-}
 
 static inline float grad(int hash, float x, float y)
 {
-	const int32_t h = hash & 0x3F;  // Convert low 3 bits of hash code
-	const float u = h < 4 ? x : y;  // into 8 simple gradient directions,
-	const float v = h < 4 ? y : x;
-	return ((h & 1) ? -u : u) + ((h & 2) ? -2.0f * v : 2.0f * v); // and compute the dot product with (x,y).
+	int   h = hash & 0x3F;
+	float u = h < 4 ? x : y;
+	float v = h < 4 ? y : x;
+
+	return ((h & 1) ? -u : u) + ((h & 2) ? -2.0f * v : 2.0f * v);
 }
 
 void simplex_seed(int seed)
 {
+	int i;
+
 	if (seed < 256)
 		seed |= seed << 8;
 
-	for (int i = 0; i < 256; i++)
+	for (i = 0; i < 256; i++)
 	{
 		int v;
 		int t = i & 1;
@@ -50,93 +51,85 @@ void simplex_seed(int seed)
 		else
 			v = perm[i] ^ ((seed >> 8) & 0xFF);
 
-		perm[i] = static_cast<unsigned char>(v);
+		perm[i] = static_cast<uint8_t>(v);
 	}
 }
 
-float simplex_noise(float x, float y)
+float simplex_raw(float x, float y)
 {
-	float n0, n1, n2;   // Noise contributions from the three corners
+	float n0, n1, n2;
+	float t0, t1, t2;
 
-	// Skew the input space to determine which simplex cell we're in
-	const float s = (x + y) * F2;  // Hairy factor for 2D
-	const float xs = x + s;
-	const float ys = y + s;
-	const int32_t i = fast_floor(xs);
-	const int32_t j = fast_floor(ys);
-
-	// Unskew the cell origin back to (x,y) space
-	const float t = static_cast<float>(i + j) * G2;
-	const float X0 = i - t;
-	const float Y0 = j - t;
-	const float x0 = x - X0;  // The x,y distances from the cell origin
-	const float y0 = y - Y0;
-
-	// For the 2D case, the simplex shape is an equilateral triangle.
-	// Determine which simplex we are in.
-	int32_t i1, j1;  // Offsets for second (middle) corner of simplex in (i,j) coords
-	if (x0 > y0) {   // lower triangle, XY order: (0,0)->(1,0)->(1,1)
-		i1 = 1;
-		j1 = 0;
-	} else {   // upper triangle, YX order: (0,0)->(0,1)->(1,1)
-		i1 = 0;
-		j1 = 1;
-	}
-
-	// A step of (1,0) in (i,j) means a step of (1-c,-c) in (x,y), and
-	// a step of (0,1) in (i,j) means a step of (-c,1-c) in (x,y), where
-	// c = (3-sqrt(3))/6
-
-	const float x1 = x0 - i1 + G2;            // Offsets for middle corner in (x,y) unskewed coords
-	const float y1 = y0 - j1 + G2;
-	const float x2 = x0 - 1.0f + 2.0f * G2;   // Offsets for last corner in (x,y) unskewed coords
-	const float y2 = y0 - 1.0f + 2.0f * G2;
+	float s  = (x + y) * F2;
+	int   i  = fast_floor(x + s);
+	int   j  = fast_floor(y + s);
+	float t  = static_cast<float>(i + j) * G2;
+	float xf = i - t;
+	float yf = j - t;
+	float x0 = x - xf;
+	float y0 = y - yf;
+	int   i1 = x0 > y0;
+	int   j1 = !i1;
+	float x1 = x0 - i1 + G2;
+	float y1 = y0 - j1 + G2;
+	float x2 = x0 - 1.0f + 2.0f * G2;
+	float y2 = y0 - 1.0f + 2.0f * G2;
 
 	// Work out the hashed gradient indices of the three simplex corners
-	const int gi0 = hash(i + hash(j));
-	const int gi1 = hash(i + i1 + hash(j + j1));
-	const int gi2 = hash(i + 1 + hash(j + 1));
+	int gi0 = perm[static_cast<uint8_t>(i      + perm[static_cast<uint8_t>(j)])];
+	int gi1 = perm[static_cast<uint8_t>(i + i1 + perm[static_cast<uint8_t>(j + j1)])];
+	int gi2 = perm[static_cast<uint8_t>(i + 1  + perm[static_cast<uint8_t>(j + 1)])];
 
 	// Calculate the contribution from the first corner
-	float t0 = 0.5f - x0*x0 - y0*y0;
-	if (t0 < 0.0f) {
+	t0 = 0.5f - x0 * x0 - y0 * y0;
+
+	if (t0 < 0.0f)
+	{
 		n0 = 0.0f;
-	} else {
+	}
+	else
+	{
 		t0 *= t0;
-		n0 = t0 * t0 * grad(gi0, x0, y0);
+		n0  = t0 * t0 * grad(gi0, x0, y0);
 	}
 
 	// Calculate the contribution from the second corner
-	float t1 = 0.5f - x1*x1 - y1*y1;
-	if (t1 < 0.0f) {
+	t1 = 0.5f - x1 * x1 - y1 * y1;
+
+	if (t1 < 0.0f)
+	{
 		n1 = 0.0f;
-	} else {
+	}
+	else
+	{
 		t1 *= t1;
-		n1 = t1 * t1 * grad(gi1, x1, y1);
+		n1  = t1 * t1 * grad(gi1, x1, y1);
 	}
 
 	// Calculate the contribution from the third corner
-	float t2 = 0.5f - x2*x2 - y2*y2;
-	if (t2 < 0.0f) {
+	t2 = 0.5f - x2 * x2 - y2 * y2;
+
+	if (t2 < 0.0f)
+	{
 		n2 = 0.0f;
-	} else {
+	}
+	else
+	{
 		t2 *= t2;
-		n2 = t2 * t2 * grad(gi2, x2, y2);
+		n2  = t2 * t2 * grad(gi2, x2, y2);
 	}
 
-	// Add contributions from each corner to get the final noise value.
-	// The result is scaled to return values in the interval [-1,1].
 	return 45.23065f * (n0 + n1 + n2);
 }
 
 float simplex_fbm(float x, float y, float f, float a, float l, float p, int o)
 {
-	float output = 0.0f;
 	int   i;
+	float output = 0.0f;
 
-	for (i = 0; i < o; ++i)
+	for (i = 0; i < o; i++)
 	{
-		output += a * simplex_noise(x * f, y * f);
+		output += a * simplex_raw(x * f, y * f);
 
 		f *= l;
 		a *= p;
