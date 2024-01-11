@@ -1,0 +1,8 @@
+{
+  "FolderOrderSettings": [],
+  "ResourceOrderSettings": [
+    {"name":"spr_sky","order":2,"path":"sprites/spr_sky/spr_sky.yy",},
+    {"name":"spr_texture","order":1,"path":"sprites/spr_texture/spr_texture.yy",},
+    {"name":"sh_sky","order":1,"path":"shaders/sh_sky/sh_sky.yy",},
+  ],
+}
