@@ -10,7 +10,7 @@ var mesh = vertex_create_buffer_from_buffer_ext(global.ext_mesh_buffer, global.v
 // Freeze Vertex Buffer
 vertex_freeze(mesh);
 
-chunk[@ Chunk.Mesh] = mesh;
+chunk[Chunk.Mesh] = mesh;
 
 // Add Chunk
 ds_list_add(global.world_chunk_list, chunk);

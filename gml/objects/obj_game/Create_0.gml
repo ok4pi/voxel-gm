@@ -38,7 +38,7 @@ global.time_delta_real = 0.0;
 global.time_delta_game = 0.0;
 
 // Unlock Framerate
-game_set_speed(0.0, gamespeed_fps);
+display_set_timing_method(tm_systemtiming);
 
 #endregion
 
@@ -50,6 +50,8 @@ game_set_speed(0.0, gamespeed_fps);
 
 global.window_width  = window_get_width();
 global.window_height = window_get_height();
+
+window_enable_borderless_fullscreen(true);
 
 #endregion
 
